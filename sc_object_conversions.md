@@ -12,9 +12,17 @@ This is important because it appears the h5ad file format changed at some point 
 
 ## Use `sceasy`
 
-Here is the [GitHub site for sceasy](https://github.com/cellgeni/sceasy)... and it really is easy.
+Here is the [GitHub site for sceasy](https://github.com/cellgeni/sceasy)... ~~and it really is easy~~ (*no it isn't*).
 
-I installed through RStudio. The steps on the GitHub README are straightforward; see there for details. Here is what you need if you just plan to convert between AnnData/h5ad and Seurat (not Loom, etc.):
+**UPDATE JULY 2024:** Something broke `sceasy` for me, not sure what. Here is what is currently working for me:
+* R: Seurat v.4.4.0
+* R: sceasy v.0.0.7
+* R: reticulate v.1.37.0 (older version throws an import error, so be sure to update)
+* Python: create conda env with python v.3.11 (not sure if version is critical)
+* anndata v.0.9.1 (this is important; default version installed is older)
+* numpy v. 1.26.4 (important to install version < 2.0.0)
+
+I installed the R packages in RStudio. The steps on the GitHub README are straightforward; see there for details. Here is what you need if you just plan to convert between AnnData/h5ad and Seurat (not Loom, etc.):
 
 1. [R] - Install `sceasy`, `reticulate`, `LoomExperiment`, and `SingleCellExperiment`
 
@@ -22,16 +30,23 @@ I installed through RStudio. The steps on the GitHub README are straightforward;
 
 ```
 # Create env named anndata (or whatever you want)
-$ conda create --name anndata
+# Specify python version
+$ conda create --name anndata python=3.11
 
 # Activate the new env so you can install packages
 $ conda activate anndata
 ```
 
-3. [bash] - Install `anndata` in your new conda env. (If using Loom files, also install `loompy`)
+3. [bash] - Install `anndata` in your new conda env. (If using Loom files, also install `loompy`.)
 
 ```
-(anndata) $ conda install anndata -c bioconda
+(anndata) $ conda install anndata=0.9.1
+```
+
+4. Downgrade `numpy` from 2.x using the `pip3` found in your conda environment specifically. Change the path below to your path to `anaconda3/envs/yourenv/bin/pip3`. If you do not specify and instead use `pip install`, default pip will not correctly install into the conda environment.
+
+```
+/Users/newman/anaconda3/envs/anndata/bin/pip3 install "numpy<2.0.0"
 ```
 
 Now you're ready to convert your files in R using `sceasy`. Usage is also straightforward and is detailed on the GitHub README.
