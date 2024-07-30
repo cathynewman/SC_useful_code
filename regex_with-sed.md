@@ -1,8 +1,10 @@
 # Regular Expressions
 
+Adapted from course materials I created for BIOL 5005/5006: Research Methods at ULM from material written by [Jeremy Brown](https://github.com/jembrown?tab=repositories) at LSU.
+
 ## File setup for today
 
-Download these files from the [data](https://github.com/cathynewman/SC_useful_code/data) folder on GitHub. Make sure you save them with the exact filename and extension as shown here.
+Download these files from the [data](https://github.com/cathynewman/SC_useful_code/tree/main/data) folder on GitHub. Make sure you save them with the exact filename and extension as shown here.
 - words.txt
 - names.txt
 - LSUMZ18817.fasta
